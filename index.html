@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RSA</title>
+</head>
+<body>
+	<input type="text" placeholder="p" id="p" name="">
+	<input type="text" placeholder="q" id="q" name="">
+	<input type="text" placeholder="e" id="e" name="">
+	<input type="text" placeholder="m" id="m" name="">
+	<input type="button" onclick="gen()"  value="generation">
+	<input type="button" onclick="enc()"  value="encryption">
+	<input type="button" onclick="dec()"  value="decoding">
+	<script type="text/javascript">
+		var p = 0;
+		var q = 0;
+		var e = 0;
+		var m = 0;
+		var n = 0;
+		var c = 0;
+		var d = 1;
+		function gen () {
+			p = Math.round(document.getElementById('p').value);
+			q = Math.round(document.getElementById('q').value);
+			e = Math.round(document.getElementById('e').value);
+			n = p * q;
+		}
+		function enc (){
+			m = document.getElementById('m').value;
+			c = m**e % n;
+			console.log(n,c)
+		}
+		function dec() {
+			while(((c * d) % ((p-1)*(q-1)) !== 1)){
+				d++
+			}
+			console.log(d);
+		}
+	</script>
+</body>
+</html>
